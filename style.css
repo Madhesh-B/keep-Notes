@@ -1,6 +1,7 @@
 *{
     margin: 0;
     padding: 0;
+    user-select: none;
     box-sizing: border-box;
 }
 
@@ -84,7 +85,7 @@ body{
     cursor: pointer;
 }
 
-.list-items h1 , p , hr{
+.list-items h1 , .list-items > p , .list-items hr{
     margin: 10px;
 }
 
@@ -96,13 +97,15 @@ body{
 .icon{
     width: 20px;
     height: 20px;
+    padding: 10px;
     position: absolute;
     top: 20px;
-    right: 5px;
+    right: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 
 .more-options{
     background-color: #fff;
@@ -119,4 +122,12 @@ body{
 
 .more-options p i{
     padding: 10px;
+}
+
+.more-options p{
+    padding: 6px;
+}
+
+.more-options p:hover{
+    background: #878787;    
 }
