@@ -24,7 +24,69 @@ body{
   color: #fff;
 }
 
+.over-lay{
+    background: #000000;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 99;
+    opacity: 0.7;
+    /* display: none; */
+}
 
+.content-display-dialog-box{
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* display: none; */
+}
+
+.content{
+    background: #fff;
+    width: 700px;
+    height: 450px;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+#title-input{
+    width: 660px;
+    height: 90px;
+    padding: 10px;
+    font-size: 50px;
+    border: none;
+    outline: none;
+}
+
+#note-input{
+    width: 660px;
+    height: 250px;
+    padding: 10px;
+    font-size: 20px;
+    border: none;
+    outline: none;
+    resize: none;
+    /* border-bottom: 1px solid black; */
+}
+
+.btn-holder{
+    margin-left: 480px;
+    margin-top: 10px;
+}
+
+.btn{
+    background: var(--bgcolor);
+    padding: 10px 20px;
+    border: none;
+    color: white;
+    border-radius: 50px;
+    margin-left: 10px;
+    cursor: pointer;
+}
 
 #navigation{
     background: var(--bgcolor);
@@ -71,7 +133,7 @@ body{
     height: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
-    display: flex;
+    
 }
 
 .list-items{
@@ -131,3 +193,10 @@ body{
 .more-options p:hover{
     background: #878787;    
 }
+
+.list-container{
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+}
+
