@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=add" />
 </head>
 <body>
-    <div class="over-lay"></div>
-    <div class="content-display-dialog-box">
+    <div class="over-lay" id="back-drop-overlay"></div>
+    <div class="content-display-dialog-box" id="content-dialog-box">
         <div class="content">
             <input type="text" name="title" id="title-input" placeholder="Title"/>
             <hr>
@@ -25,19 +25,21 @@
     <header><nav id="navigation">Keep Notes</nav></header>
     <div class="back-fill"></div>
     <div class="container" id="source">
-        <ul class="list-container" id="list-holder">
-            <li id="list-item">
-                <div class="list-items" id="first-note">
-                    <div class="icon"><i class="fa-solid fa-ellipsis-vertical more" id="more-icon"></i></div>
-                    <h1 id="title-bar">First Note</h1> <hr>
-                    <p id="content-bar">This is your first note, a fresh start. More to come as you build your collection!</p>
-                    <div class="more-options" id="more-option-bar">
-                        <p id="edit"><i class="fa-solid fa-pen"></i>Edit</p>
-                        <p id="delete"><i class="fa-solid fa-trash"></i>Delete</p>
+        <div class="container-div-inside">
+            <ul class="list-container" id="list-holder">
+                <li id="list-item">
+                    <div class="list-items" id="first-note">
+                        <div class="icon" onclick="moreOptions(event)"><i class="fa-solid fa-ellipsis-vertical more" id="more-icon"></i></div>
+                        <h1 id="title-bar">First Note</h1> <hr>
+                        <p id="content-bar">This is your first note, a fresh start. More to come as you build your collection!</p>
+                        <div class="more-options" id="more-option-bar">
+                            <p id="edit"><i class="fa-solid fa-pen"></i>Edit</p>
+                            <p id="delete"><i class="fa-solid fa-trash"></i>Delete</p>
+                        </div>
                     </div>
-                </div>
-            </li>
-        </ul>
+                </li>
+            </ul>
+        </div>
     </div>
     <button class="add-btn" id="new-btn"><span class="material-symbols-outlined">add</span></button>
     <script src="./script.js"></script>
