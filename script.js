@@ -13,70 +13,73 @@ var overlay = document.getElementById("back-drop-overlay");
 var user_input_dialogbox = document.getElementById("content-dialog-box");
 var title_input = document.getElementById("title-input");
 var note_input = document.getElementById("note-input");
+var content_edit_dialog_box = document.getElementById("content-edit-dialog-box");
+var cancel_edit = document.getElementById("cancel");
+var replace_edit = document.getElementById("replace-btn");
 
-// more_btn.addEventListener("click" , function(event){
-//     options.style.display = "block";
-// });
+//success
 
-del_btn.addEventListener("click" , function(event){
-    var targetEl = event.target.parentNode.parentNode.parentNode;
-    targetEl.remove();
-});
-
-//btn_div.addEventListener("click" , function(event){
-// function moreOptions(event){
-//     var elementL = event.target.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling;
-//     // var elementL = event.target.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling;
-//     //elementL.style.display = "block"
-//     console.log(elementL);
-//     // elementL.remove();
-// // });
-// }
-
-function moreOptions(event){
-    var elementL = event.target.closest('.more-options');
-    // var elementL = event.target.closest('.list-items').querySelector('.more-options');
-    elementL.style.display = 'block';  // Display the more options menu
-    console.log(elementL);
-}
-
-
-// container.addEventListener("click" , () => {
-//     options.style.display = "none";
-// })
-
+//To display the needed dialog box
 add_btn.addEventListener("click" , () =>{
     user_input_dialogbox.style.display = "flex";
     overlay.style.display = "block";
 });
 
+//To add the List into the ul
 submit_btn.addEventListener("click" , () =>{
     var title_val = title_input.value;
     var content_val = note_input.value;
-    edit_content(title_val , content_val)
+    if(title_val != "" && content_val != ""){
+        edit_content(title_val , content_val)
+    }
+    if(title_val == ""){
+        if(content_val == ""){
+            edit_content("No Title" , "No Content")
+        }
+        else{
+            edit_content("No Title" , content_val)
+        } 
+    }
+    else{
+        edit_content(title_val , "No Content")
+    } 
 })
 
-cancel_btn.addEventListener("click" , () => {
+// block to perform cancel operation.
+function cancelOperation(){
     user_input_dialogbox.style.display = "none";
     overlay.style.display = "none";
     title_input.value = "";
     note_input.value = "";
+}
+
+//To close the dialog box in add section.
+cancel_btn.addEventListener("click" , () => {
+    cancelOperation();
+});
+//To close the dialog box in edit section.
+cancel_edit.addEventListener("click" , () => {
+    cancelOperation();
 });
 
+// To add functionality to sub_btn()
+
+var count = 1;
 function edit_content(title , content){
     var division_note = `
-        <li id="list-item">
-                <div class="list-items" id="first-note">
-                    <div class="icon"><i class="fa-solid fa-ellipsis-vertical more" id="more-icon"></i></div>
-                    <h1 id="title-bar">${title}</h1> <hr>
-                    <p id="content-bar">${content}</p>
-                    <div class="more-options" id="more-option-bar">
-                        <p id="edit"><i class="fa-solid fa-pen"></i>Edit</p>
-                        <p id="delete"><i class="fa-solid fa-trash"></i>Delete</p>
+        <li id="list-item-${count}">
+                <div class="list-items" id="first-note-${count}">
+                    <div class="icon"><i class="fa-solid fa-ellipsis-vertical more" id="more-icon-${count}"></i></div>
+                    <h1 class="title" id="title-bar-${count}">${title}</h1> <hr>
+                    <p class="note-bar" id="content-bar-${count}">${content}</p>
+                    <div class="more-options" id="more-option-bar-${count}">
+                        <p id="edit-${count}"><i class="fa-solid fa-pen"></i>Edit</p>
+                        <p id="delete-${count}"><i class="fa-solid fa-trash"></i>Delete</p>
                     </div>
                 </div>
          </li>
     `;
+    count++;
     list_container.innerHTML += division_note;
     title_input.value = "";
     note_input.value = "";
@@ -85,6 +88,33 @@ function edit_content(title , content){
 
 }
 
-// submit_btn.addEventListener("click" , () => {
-//     user_input_dialogbox.classList.add("display-none");
-// });
+// under construction
+
+//To open the more option dialog box , delete the list items and editing the value.
+document.addEventListener("click",(event)=>{
+    var chkEl = event.target.getAttribute("id")
+    for(var i = 0;i <= count ; i++){
+        if(chkEl == `more-icon-${i}`){
+            var elementL = event.target.parentNode.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling;
+            elementL.style.display = "block"
+            break;
+        }
+        else if(chkEl == `delete-${i}`){
+            var targetEl = event.target.parentNode.parentNode.parentNode;
+            targetEl.remove();
+        }
+        else if(chkEl == `edit-${i}`){
+            var elementL = event.target.parentNode.previousSibling.previousSibling;
+            console.log(elementL);
+            overlay.style.display = "block";
+            content_edit_dialog_box.style.display = "block";
+        }
+        
+    }
+    
+})
+
+
+
+
+
