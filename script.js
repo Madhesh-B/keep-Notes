@@ -46,8 +46,8 @@ submit_btn.addEventListener("click" , () =>{
 })
 
 // block to perform cancel operation.
-function cancelOperation(){
-    user_input_dialogbox.style.display = "none";
+function cancelOperation(box){
+    box.style.display = "none";
     overlay.style.display = "none";
     title_input.value = "";
     note_input.value = "";
@@ -55,11 +55,11 @@ function cancelOperation(){
 
 //To close the dialog box in add section.
 cancel_btn.addEventListener("click" , () => {
-    cancelOperation();
+    cancelOperation(user_input_dialogbox);
 });
 //To close the dialog box in edit section.
 cancel_edit.addEventListener("click" , () => {
-    cancelOperation();
+    cancelOperation(content_edit_dialog_box);
 });
 
 // To add functionality to sub_btn()
@@ -108,12 +108,18 @@ document.addEventListener("click",(event)=>{
             console.log(elementL);
             overlay.style.display = "block";
             content_edit_dialog_box.style.display = "block";
+            //title_input.value = 
         }
+        else if(chkEl == "list-holder"){
+            var removeEl = event.target.children.;
+            //elementL.style.display = "none"
+            console.log(removeEl);
+        }
+        
         
     }
     
 })
-
 
 
 
