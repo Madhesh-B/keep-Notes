@@ -77,7 +77,6 @@ body{
     border: none;
     outline: none;
     resize: none;
-    /* border-bottom: 1px solid black; */
 }
 
 .btn-holder{
@@ -209,6 +208,3 @@ body{
     flex-wrap: wrap;
 }
 
-.display-none{
-    display: none;
-}
