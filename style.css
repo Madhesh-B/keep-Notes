@@ -60,7 +60,7 @@ body{
     padding: 20px;
 }
 
-#title-input{
+#title-input , #title-edit{
     width: 660px;
     height: 90px;
     padding: 10px;
@@ -69,7 +69,7 @@ body{
     outline: none;
 }
 
-#note-input{
+#note-input , #note-edit{
     width: 660px;
     height: 250px;
     padding: 10px;
@@ -80,7 +80,7 @@ body{
 }
 
 .btn-holder{
-    margin-left: 480px;
+    margin-left: 450px;
     margin-top: 10px;
 }
 
