@@ -1,11 +1,5 @@
-var container = document.getElementById("source");
+// element variable declaration.
 var list_container = document.getElementById("list-holder");
-var more_btn = document.getElementById("more-icon");
-var options = document.getElementById("more-option-bar");
-var btn_div = document.getElementsByClassName("icon");
-var del_btn = document.getElementById("delete");
-var edit_btn = document.getElementById("edit");
-var li = document.getElementById("first-note");
 var add_btn = document.getElementById("new-btn");
 var cancel_btn = document.getElementById("cancel-btn");
 var submit_btn = document.getElementById("submit-btn");
@@ -16,8 +10,6 @@ var note_input = document.getElementById("note-input");
 var content_edit_dialog_box = document.getElementById("content-edit-dialog-box");
 var cancel_edit = document.getElementById("cancel");
 var replace_edit = document.getElementById("replace-btn");
-
-//success
 
 //To display the needed dialog box
 add_btn.addEventListener("click" , () =>{
@@ -63,7 +55,6 @@ cancel_edit.addEventListener("click" , () => {
 });
 
 // To add functionality to sub_btn()
-
 var count = 1;
 function edit_content(title , content){
     var division_note = `
@@ -86,9 +77,9 @@ function edit_content(title , content){
     user_input_dialogbox.style.display = "none";
     overlay.style.display = "none";
 
-}
+};
 
-//To open the more option dialog box , delete the list items , editing the value and display off the more option bar.
+//To open the more option dialog box , delete the list items and editing the value.
 var event_recieve = 0;
 document.addEventListener("click",(event)=>{
     var chkEl = event.target.getAttribute("id")
@@ -112,7 +103,6 @@ document.addEventListener("click",(event)=>{
             var note_edit = document.getElementById("note-edit");
             note_edit.value = elementL.textContent;
             var elementL = event.target.parentNode.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling;
-            console.log(elementL)
             title_edit.value = elementL.textContent;
             event_recieve = i;
             break;
@@ -124,8 +114,9 @@ document.addEventListener("click",(event)=>{
             break;
         }   
     } 
-})
-// to replace the text or edit the text
+});
+
+//to replace the text in the existing div list.
 replace_edit.addEventListener("click" , () =>{
     var title_edit = document.getElementById("title-edit").value;
     var note_edit = document.getElementById("note-edit").value;
@@ -134,5 +125,4 @@ replace_edit.addEventListener("click" , () =>{
     title_edit.value = "";
     note_edit.value = "";
     cancelOperation(content_edit_dialog_box);
-})
-
+});
