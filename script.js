@@ -30,7 +30,7 @@ submit_btn.addEventListener("click" , () =>{
     var title_val = title_input.value;
     var content_val = note_input.value;
     if(title_val != "" && content_val != ""){
-        edit_content(title_val , content_val)
+        edit_content(title_val , content_val);
     }
     if(title_val == ""){
         if(content_val == ""){
@@ -40,7 +40,7 @@ submit_btn.addEventListener("click" , () =>{
             edit_content("No Title" , content_val)
         } 
     }
-    else{
+    else if(content_val == ""){
         edit_content(title_val , "No Content")
     } 
 })
@@ -68,7 +68,7 @@ var count = 1;
 function edit_content(title , content){
     var division_note = `
         <li id="list-item-${count}">
-                <div class="list-items" id="first-note-${count}">
+                <div class="list-items" id="note-${count}">
                     <div class="icon"><i class="fa-solid fa-ellipsis-vertical more" id="more-icon-${count}"></i></div>
                     <h1 class="title" id="title-bar-${count}">${title}</h1> <hr>
                     <p class="note-bar" id="content-bar-${count}">${content}</p>
@@ -88,9 +88,8 @@ function edit_content(title , content){
 
 }
 
-// under construction
-
-//To open the more option dialog box , delete the list items and editing the value.
+//To open the more option dialog box , delete the list items , editing the value and display off the more option bar.
+var event_recieve = 0;
 document.addEventListener("click",(event)=>{
     var chkEl = event.target.getAttribute("id")
     for(var i = 0;i <= count ; i++){
@@ -102,25 +101,38 @@ document.addEventListener("click",(event)=>{
         else if(chkEl == `delete-${i}`){
             var targetEl = event.target.parentNode.parentNode.parentNode;
             targetEl.remove();
+            break;
         }
         else if(chkEl == `edit-${i}`){
             var elementL = event.target.parentNode.previousSibling.previousSibling;
-            console.log(elementL);
             overlay.style.display = "block";
-            content_edit_dialog_box.style.display = "block";
-            //title_input.value = 
+            content_edit_dialog_box.style.display = "flex";
+            event.target.parentNode.style.display = "none";
+            var title_edit = document.getElementById("title-edit");
+            var note_edit = document.getElementById("note-edit");
+            note_edit.value = elementL.textContent;
+            var elementL = event.target.parentNode.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling;
+            console.log(elementL)
+            title_edit.value = elementL.textContent;
+            event_recieve = i;
+            break;
         }
         else if(chkEl == "list-holder"){
-            var removeEl = event.target.children.;
-            //elementL.style.display = "none"
-            console.log(removeEl);
-        }
-        
-        
-    }
-    
+            for(let j = 0; j <= count ;j++){
+                document.getElementById(`more-option-bar-${j}`).style.display = "none";
+            }
+            break;
+        }   
+    } 
 })
-
-
-
+// to replace the text or edit the text
+replace_edit.addEventListener("click" , () =>{
+    var title_edit = document.getElementById("title-edit").value;
+    var note_edit = document.getElementById("note-edit").value;
+    document.getElementById(`title-bar-${event_recieve}`).innerHTML = title_edit;
+    document.getElementById(`content-bar-${event_recieve}`).innerHTML = note_edit;
+    title_edit.value = "";
+    note_edit.value = "";
+    cancelOperation(content_edit_dialog_box);
+})
 
